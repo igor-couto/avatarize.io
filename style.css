@@ -40,7 +40,6 @@ input {
 
 footer {
   background-color: #f5c917;
-  color: #24305e;
   position: fixed;
   left: 0;
   bottom: 0;
@@ -51,4 +50,6 @@ footer {
 #github-link {
   float: right;
   margin: 15px 15px;
+  text-decoration: none;
+  color: #24305e !important;
 }
