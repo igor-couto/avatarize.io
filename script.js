@@ -1,19 +1,21 @@
+const inputElement = document.getElementById("seed");
+const imageElement = document.getElementById("avatar-image");
+
 function generateAvatar() {
-  let input = document.getElementById("seed").value;
+  let input = inputElement.value;
 
   if (
     input === null ||
     input === undefined ||
     input.replaceAll(/\s/g, "") === ""
   ) {
-    document.getElementById("avatar-image").src = "./template.png";
+    imageElement.src = "./template.png";
     return;
   }
 
   fetch("https://localhost:5001/Avatar?input=" + input).then((response) =>
     response.text().then((text) => {
-      document.getElementById("avatar-image").src =
-        "data:image/png;base64, " + text;
+      imageElement.src = "data:image/png;base64, " + text;
     })
   );
 }
