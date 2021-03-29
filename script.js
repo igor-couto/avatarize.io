@@ -1,6 +1,8 @@
 const inputElement = document.getElementById("seed");
 const imageElement = document.getElementById("avatar-image");
 
+inputElement.focus();
+
 function generateAvatar() {
   let input = inputElement.value;
 
