@@ -1,11 +1,12 @@
 h1 {
   color: #ea9800;
   text-shadow: 6px 6px 0px rgba(0, 0, 0, 0.2);
-  margin-left: 25px;
+  margin: 25px;
   font-size: 2.75rem;
 }
 
 body {
+  margin: 0;
   font-family: "Press Start 2P script=all rev=1";
   display: flex;
   flex-direction: column;
@@ -24,8 +25,12 @@ main {
   justify-content: center;
 }
 
+figure {
+  margin: 50px 25px 25px 25px;
+}
+
 input {
-  border: 3px solid #888888;
+  border: 4px solid #888888;
   outline: none;
   height: calc(1.5em + 1rem + 2px);
   padding: 0.5rem 1rem;
