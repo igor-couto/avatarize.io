@@ -1,0 +1,15 @@
+footer {
+  background-color: #f5c917;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+#github-link {
+  float: right;
+  margin: 15px 15px;
+  text-decoration: none;
+  color: #24305e !important;
+}

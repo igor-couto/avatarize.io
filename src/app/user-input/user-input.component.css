@@ -1,0 +1,15 @@
+input {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  font-family: "Press Start 2P script=all rev=1";
+  color: rgb(36, 48, 94);
+  caret-color: rgb(36, 48, 94);
+  text-align: center !important;
+  border-width: 4px;
+  border-style: solid;
+  border-color: rgb(136, 136, 136);
+  border-image: initial;
+  outline: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+}

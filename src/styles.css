@@ -1,0 +1,27 @@
+h1 {
+  color: #ea9800;
+  text-shadow: 6px 6px 0px rgba(0, 0, 0, 0.2);
+  margin: 25px;
+  font-size: 2.75rem;
+}
+
+body {
+  margin: 0;
+  font-family: "Press Start 2P script=all rev=1";
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(
+    0deg,
+    rgba(65, 61, 108, 1) 0%,
+    rgba(105, 98, 150, 1) 100%
+  );
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  min-height: 100%;
+  height: 100%;
+}
