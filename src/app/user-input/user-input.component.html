@@ -3,5 +3,7 @@
   id="input"
   name="input"
   maxlength="512"
-  onInput="generateAvatar()"
+  [(ngModel)]="input"
+  (input)="generateAvatar()"
+  focus
 />
