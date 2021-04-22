@@ -5,4 +5,10 @@ import { Component } from '@angular/core';
   templateUrl: './avatar.component.html',
   styleUrls: ['./avatar.component.css'],
 })
-export class AvatarComponent {}
+export class AvatarComponent {
+  src: string;
+
+  constructor() {
+    this.src = '../../assets/Images/template.png';
+  }
+}
