@@ -10,7 +10,6 @@ import { AvatarComponent } from './avatar/avatar.component';
 import { UserInputComponent } from './user-input/user-input.component';
 import { FooterComponent } from './footer/footer.component';
 import { SettingsComponent } from './settings/settings.component';
-import { SettingsButtonComponent } from './settings-button/settings-button.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +18,6 @@ import { SettingsButtonComponent } from './settings-button/settings-button.compo
     UserInputComponent,
     FooterComponent,
     SettingsComponent,
-    SettingsButtonComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [AvatarService],

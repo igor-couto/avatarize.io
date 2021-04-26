@@ -1,3 +1,10 @@
+<img
+  id="settings-button"
+  src="{{ src }}"
+  (click)="settingsButtonDown ? release() : press()"
+  width="54"
+/>
+
 <section id="settings-section" *ngIf="settingsButtonDown">
   <label>
     Size:

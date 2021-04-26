@@ -23,20 +23,12 @@ export class UserInputComponent implements OnInit {
 
     this.avatarService.getAvatar(this.input).subscribe(
       (response) => {
-        console.log(response);
+        //imageElement.src = "data:image/png;base64, " + text;
       },
-      (e) => {
-        console.log(e);
+      (error) => {
+        console.log(error);
       }
     );
-
-    // fetch('https://localhost:5001/Avatar?input=' + this.input).then(
-    //   (response) =>
-    //     response.text().then((text) => {
-    //       console.log(text);
-    //       //imageElement.src = "data:image/png;base64, " + text;
-    //     })
-    // );
   }
 
   private isEmptyInput() {
