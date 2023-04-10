@@ -15,8 +15,8 @@ function generateAvatar() {
     return;
   }
 
-  fetch("http://44.204.196.91/avatar?input=" + input).then((response) =>
-    response.text().then((text) => {
+  fetch("http://44.204.196.91/avatar?input=" + input, {referrerPolicy: "unsafe_url"})
+    .then((response) => response.text().then((text) => {
       imageElement.src = "data:image/png;base64, " + text;
     })
   );
