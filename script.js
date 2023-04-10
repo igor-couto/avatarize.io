@@ -15,7 +15,7 @@ function generateAvatar() {
     return;
   }
 
-  fetch("https://localhost:5001/Avatar?input=" + input).then((response) =>
+  fetch("http://44.204.196.91/avatar?input=" + input).then((response) =>
     response.text().then((text) => {
       imageElement.src = "data:image/png;base64, " + text;
     })
