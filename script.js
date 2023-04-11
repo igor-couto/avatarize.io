@@ -16,8 +16,9 @@ function generateAvatar() {
   }
 
   fetch("https://3.234.219.64/avatar?input=" + input, {referrerPolicy: "unsafe-url"})
-    .then((response) => response.text().then((text) => {
-      imageElement.src = "data:image/png;base64, " + text;
-    })
-  );
+    .then((response) => response.blob())
+    .then((blob) => {
+      const imageUrl = URL.createObjectURL(blob);
+      imageElement.src = imageUrl;
+  });
 }
