@@ -15,7 +15,7 @@ function generateAvatar() {
     return;
   }
 
-  fetch("https://3.234.219.64/avatar?input=" + input, {referrerPolicy: "unsafe-url"})
+  fetch("https://3.234.219.64/avatar?frame=true&background=true&input=" + input, {referrerPolicy: "unsafe-url"})
     .then((response) => response.blob())
     .then((blob) => {
       const imageUrl = URL.createObjectURL(blob);
