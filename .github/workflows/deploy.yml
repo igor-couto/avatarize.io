@@ -41,8 +41,8 @@ jobs:
         scp -P $SSH_PORT -r ./* $SSH_USER@$SSH_HOST:/home/$SSH_USER/apps/avatarize.io
         ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "
           cd /home/$SSH_USER/apps/avatarize.io &&
-          docker-compose down &&
-          docker-compose build &&
-          docker-compose up -d
+          docker compose down &&
+          docker compose build &&
+          docker compose up -d
         "
       shell: bash
