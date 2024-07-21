@@ -19,7 +19,7 @@ jobs:
 
     - name: Modify Dockerfile to be deployed using ARM architeture
       run: |
-        sed -i 's|FROM node:latest as builder|FROM arm64v8/node:latest|g' Dockerfile
+        sed -i 's|FROM node:latest as builder|FROM arm64v8/node:latest as builder|g' Dockerfile
         sed -i 's|FROM nginx:latest|FROM arm64v8/nginx:latest|g' Dockerfile
       shell: bash
 
