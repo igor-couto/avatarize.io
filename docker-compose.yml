@@ -1,0 +1,8 @@
+services:
+  avatazize:
+    container_name: web-application
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "50001:80"
