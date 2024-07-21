@@ -28,11 +28,19 @@ function generateAvatar() {
     return;
   }
 
-  fetch("https://localhost:5001/Avatar?input=" + input).then((response) =>
-    response.text().then((text) => {
-      imageElement.src = "data:image/png;base64, " + text;
+  fetch("http://igorcouto.com/projects/avatarize/api/avatar?input=" + input + "&background=true&frame=true").then((response) =>
+    response.arrayBuffer().then((buffer) => {
+      let binary = '';
+      const bytes = new Uint8Array(buffer);
+      const len = bytes.byteLength;
+      for (let i = 0; i < len; i++) {
+        binary += String.fromCharCode(bytes[i]);
+      }
+      const base64String = btoa(binary);
+      imageElement.src = "data:image/png;base64," + base64String;
     })
   );
+
 }
 
 function SettingsClick() {
