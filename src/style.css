@@ -7,10 +7,11 @@ h1 {
 
 body {
   margin: 0;
-  font-family: "Press Start 2P script=all rev=1";
+  font-family: "Press Start 2P", system-ui;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100vh;
   background: linear-gradient(
     0deg,
     rgba(65, 61, 108, 1) 0%,
@@ -20,9 +21,11 @@ body {
 
 main {
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-bottom: 40px;
 }
 
 figure {
@@ -37,7 +40,7 @@ input {
   font-size: 1.25rem;
   line-height: 1.5;
   border-radius: 0.3rem;
-  font-family: "Press Start 2P script=all rev=1";
+  font-family: "Press Start 2P", system-ui;
   text-align: center !important;
   color: #24305e;
   caret-color: #24305e;
