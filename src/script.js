@@ -28,7 +28,7 @@ function generateAvatar() {
     return;
   }
 
-  fetch("http://igorcouto.com/projects/avatarize/api/avatar?input=" + input + "&background=true&frame=true").then((response) =>
+  fetch("https://igorcouto.com/projects/avatarize/api/avatar?input=" + input + "&background=true&frame=true").then((response) =>
     response.arrayBuffer().then((buffer) => {
       let binary = '';
       const bytes = new Uint8Array(buffer);
