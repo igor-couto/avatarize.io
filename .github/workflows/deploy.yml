@@ -71,7 +71,7 @@ jobs:
           sudo docker run -d \
               --name avatarize.io \
               --restart=always \
-              -p 50061:80 \
+              -p 50001:80 \
               ghcr.io/igor-couto/avatarize.io:latest
           "
       shell: bash
