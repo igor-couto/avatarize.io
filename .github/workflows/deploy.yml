@@ -11,7 +11,6 @@ on:
 
 jobs:
 
-
   build:
     name: Build and pull docker container
     runs-on: self-hosted
@@ -51,28 +50,28 @@ jobs:
       shell: bash
 
     - name: 🚀 Pull and run the Docker image on the server
-    env:
-        SSH_HOST: ${{ secrets.SSH_HOST }}
-        SSH_USER: ${{ secrets.SSH_USER }}
-        SSH_PORT: ${{ secrets.SSH_PORT }}
-    run: |
-        ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "
-        cd /home/$SSH_USER/apps/avatarize.io || mkdir -p /home/$SSH_USER/apps/avatarize.io && cd /home/$SSH_USER/apps/avatarize.io
+      env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+      run: |
+          ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "
+          cd /home/$SSH_USER/apps/avatarize.io || mkdir -p /home/$SSH_USER/apps/avatarize.io && cd /home/$SSH_USER/apps/avatarize.io
 
-        echo 'Logging in to GHCR...'
-        echo '${{ secrets.GITHUB_TOKEN }}' | sudo docker login ghcr.io -u '${{ github.actor }}' --password-stdin
+          echo 'Logging in to GHCR...'
+          echo '${{ secrets.GITHUB_TOKEN }}' | sudo docker login ghcr.io -u '${{ github.actor }}' --password-stdin
 
-        echo 'Pulling latest image...'
-        sudo docker pull ghcr.io/igor-couto/avatarize.io:latest
+          echo 'Pulling latest image...'
+          sudo docker pull ghcr.io/igor-couto/avatarize.io:latest
 
-        echo 'Stopping and removing old container...'
-        sudo docker rm -f avatarize.io || true
+          echo 'Stopping and removing old container...'
+          sudo docker rm -f avatarize.io || true
 
-        echo 'Running the container...'
-        sudo docker run -d \
-            --name avatarize.io \
-            --restart=always \
-            -p 50061:80 \
-            ghcr.io/igor-couto/avatarize.io:latest
-        "
+          echo 'Running the container...'
+          sudo docker run -d \
+              --name avatarize.io \
+              --restart=always \
+              -p 50061:80 \
+              ghcr.io/igor-couto/avatarize.io:latest
+          "
     shell: bash
