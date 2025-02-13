@@ -10,20 +10,39 @@ on:
       - main
 
 jobs:
+
+
+  build:
+    name: Build and pull docker container
+    runs-on: self-hosted
+    steps:
+      - name: 🛠️ Check out repository
+        uses: actions/checkout@v4
+
+      - name: 🔐 Log in to GHCR
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🏗️ Build and push Docker image
+        run: |
+          docker build \
+            --platform linux/arm64 \
+            -f frontend/Dockerfile \
+            -t ghcr.io/igor-couto/avatarize.io:latest \
+            --push \
+            frontend/
+
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: 🛠️ Check out repository
       uses: actions/checkout@v4
 
-    - name: Modify Dockerfile to be deployed using ARM architeture
-      run: |
-        sed -i 's|FROM node:latest as builder|FROM arm64v8/node:latest as builder|g' Dockerfile
-        sed -i 's|FROM nginx:latest|FROM arm64v8/nginx:latest|g' Dockerfile
-      shell: bash
-
-    - name: Setup SSH
+    - name: 🔐 Set up SSH
       run: |
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
@@ -31,18 +50,29 @@ jobs:
         ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
       shell: bash
 
-    - name: Deploy to Server
-      env:
+    - name: 🚀 Pull and run the Docker image on the server
+    env:
         SSH_HOST: ${{ secrets.SSH_HOST }}
         SSH_USER: ${{ secrets.SSH_USER }}
         SSH_PORT: ${{ secrets.SSH_PORT }}
-      run: |
-        ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "mkdir -p /home/$SSH_USER/apps/avatarize.io"
-        scp -P $SSH_PORT -r ./* $SSH_USER@$SSH_HOST:/home/$SSH_USER/apps/avatarize.io
+    run: |
         ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "
-          cd /home/$SSH_USER/apps/avatarize.io &&
-          sudo docker compose down &&
-          sudo docker compose build &&
-          sudo docker compose up -d
+        cd /home/$SSH_USER/apps/avatarize.io || mkdir -p /home/$SSH_USER/apps/avatarize.io && cd /home/$SSH_USER/apps/avatarize.io
+
+        echo 'Logging in to GHCR...'
+        echo '${{ secrets.GITHUB_TOKEN }}' | sudo docker login ghcr.io -u '${{ github.actor }}' --password-stdin
+
+        echo 'Pulling latest image...'
+        sudo docker pull ghcr.io/igor-couto/avatarize.io:latest
+
+        echo 'Stopping and removing old container...'
+        sudo docker rm -f avatarize.io || true
+
+        echo 'Running the container...'
+        sudo docker run -d \
+            --name avatarize.io \
+            --restart=always \
+            -p 50061:80 \
+            ghcr.io/igor-couto/avatarize.io:latest
         "
-      shell: bash
+    shell: bash
