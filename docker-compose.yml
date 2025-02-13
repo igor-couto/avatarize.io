@@ -1,5 +1,5 @@
 services:
-  avatazize:
+  avatarize:
     container_name: web-application
     build:
       context: .
