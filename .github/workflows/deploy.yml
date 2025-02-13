@@ -32,6 +32,7 @@ jobs:
             -f Dockerfile \
             -t ghcr.io/igor-couto/avatarize.io:latest \
             --push \
+            .
 
   deploy:
     runs-on: ubuntu-latest
